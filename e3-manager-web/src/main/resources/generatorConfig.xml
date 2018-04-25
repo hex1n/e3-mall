@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+    <!-- 配置mysql 驱动jar包路径.用了绝对路径 -->
+    <properties resource="db.properties"/>
+    <classPathEntry location="${jdbc.driverLocation}"/>
+    <context id="context" targetRuntime="MyBatis3">
+        <!--pojo类序列化-->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <!-- 防止生成的代码中有很多注释，加入下面的配置控制 -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+        <!-- 数据库连接 -->
+        <jdbcConnection userId="${jdbc.username}" password="${jdbc.password}"
+                        driverClass="${jdbc.driver}"
+                        connectionURL="${jdbc.url}"/>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!-- 数据表对应的model层  -->
+        <javaModelGenerator targetPackage="x.e3mall.pojo" targetProject="src\main\java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!-- sql mapper 映射配置文件 -->
+        <sqlMapGenerator targetPackage="x.e3mall.dao" targetProject="src\main\java">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!-- mybatis3中的mapper接口 -->
+        <javaClientGenerator targetPackage="x.e3mall.dao" type="XMLMAPPER" targetProject="src\main\java">
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+        <!-- 数据表进行生成操作 schema:相当于库名; tableName:表名; domainObjectName:对应的DO -->
+        <table schema="e3mall" tableName="tb_content" enableCountByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true"
+        />
+        <table schema="e3mall" tableName="tb_content_category" enableCountByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true"
+        />
+        <table schema="e3mall" tableName="tb_item" enableCountByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true"
+        />
+        <table schema="e3mall" tableName="tb_item_cat" enableCountByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true"
+        />
+        <table schema="e3mall" tableName="tb_item_desc" enableCountByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true"
+        />
+        <table schema="e3mall" tableName="tb_item_param" enableCountByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true"
+        />
+        <table schema="e3mall" tableName="tb_item_param_item" enableCountByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true"
+        />
+        <table schema="e3mall" tableName="tb_order" enableCountByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true"
+        />
+        <table schema="e3mall" tableName="tb_order_item" enableCountByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true"
+        />
+        <table schema="e3mall" tableName="tb_order_shipping" enableCountByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true"
+        />
+        <table schema="e3mall" tableName="tb_user" enableCountByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true"
+        />
+    </context>
+</generatorConfiguration>
